@@ -17,5 +17,8 @@
     "react-hook-form": "^6.9.2",
     "sass": "^1.26.12",
     "yup": "^0.29.3"
+  },
+  "devDependencies": {
+    "@netlify/plugin-nextjs": "^4.20.0"
   }
 }
