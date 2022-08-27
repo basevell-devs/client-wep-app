@@ -19,6 +19,21 @@
     "yup": "^0.29.3"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^4.20.0"
+    "@netlify/plugin-nextjs": "^4.20.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1"
+  },
+  "lint-staged": {
+    "src/**/*.{tsx, ts, js,jsx}": [
+      "eslint . --fix",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
