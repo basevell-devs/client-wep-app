@@ -1,16 +1,16 @@
 import React from "react";
-import { db } from "@/config/firebase";
+import { db } from "../../config/firebase";
 
 import Head from "next/head";
 
 import styles from "./search.module.scss";
 
-import Layout from "components/Layout";
-import Button from "@/components/FilterButton";
-import ProductCard from "@/components/ProductCard/product-card";
-import { useAuth } from "@/firebase/context";
+import Layout from "../../components/Layout";
+import Button from "../../components/FilterButton";
+import ProductCard from "../../components/ProductCard/product-card";
+import { useAuth } from "../../firebase/context";
 
-export default function SearchPage({ data, query }) {
+const SearchPage = ({ data, query }) => {
   const { user, loading } = useAuth();
 
   console.log(data, query);
@@ -54,7 +54,7 @@ export default function SearchPage({ data, query }) {
       </div>
     </Layout>
   );
-}
+};
 
 SearchPage.getInitialProps = async function ({ query }) {
   let data = {};
@@ -77,3 +77,5 @@ SearchPage.getInitialProps = async function ({ query }) {
     query,
   };
 };
+
+export default SearchPage;

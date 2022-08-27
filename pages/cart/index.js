@@ -1,16 +1,16 @@
 import Head from "next/head";
 import styles from "./cart.module.scss";
 
-import Layout from "components/Layout";
-import CartItem from "@/components/CartItem";
+import Layout from "../../components/Layout";
+import CartItem from "../../components/CartItem";
 import { useCart, useCartOnce } from "hooks/cart.hook";
 import React, { useEffect, useState } from "react";
-import { auth, db } from "@/config/firebase";
-import { useAuth } from "@/firebase/context";
-import { addToCart } from "@/firebase/product";
+import { auth, db } from "../../config/firebase";
+import { useAuth } from "../../firebase/context";
+import { addToCart } from "../../firebase/product";
 import { useRouter } from "next/router";
 
-export default function CartPage() {
+const CartPage = () => {
   const { user, loading } = useAuth();
   const { data } = useCart();
 
@@ -33,19 +33,13 @@ export default function CartPage() {
   const sizeCount = cartItems.reduce(
     (acc, value) => ({
       ...acc,
-      [value.name + "__size__" + value.size]:
-        (acc[value.name + "__size__" + value.size] || 0) + 1,
+      [value.name + "__size__" + value.size]: (acc[value.name + "__size__" + value.size] || 0) + 1,
     }),
-    {}
+    {},
   );
 
   const cartItemsArray = [
-    ...new Set(
-      cartItems.filter(
-        (v, i, a) =>
-          a.findIndex((t) => t.name === v.name && t.size === v.size) === i
-      )
-    ),
+    ...new Set(cartItems.filter((v, i, a) => a.findIndex((t) => t.name === v.name && t.size === v.size) === i)),
   ].map((item) => {
     return { ...item, count: sizeCount[item.name + "__size__" + item.size] };
   });
@@ -80,19 +74,13 @@ export default function CartPage() {
             <h1 className={styles.title}>My Cart</h1>
             <h4>You have {cartLength} items in your cart</h4>
           </div>
-          {cartItemsArray.map((item, index) => {
-            return (
-              <CartItem
-                key={index}
-                id={item.name}
-                size={item.size}
-                count={item.count}
-                onAdd={addCartEvent}
-              />
-            );
-          })}
+          {cartItemsArray.map((item, index) => (
+            <CartItem key={index} id={item.name} size={item.size} count={item.count} onAdd={addCartEvent} />
+          ))}
         </main>
       </div>
     </Layout>
   );
-}
+};
+
+export default CartPage;

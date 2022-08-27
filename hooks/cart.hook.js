@@ -1,7 +1,7 @@
-import { db, auth } from "@/config/firebase";
+import { db, auth } from "../config/firebase";
 import { useState, useEffect } from "react";
 
-const useCart = (id) => {
+export const useCart = (id) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -27,7 +27,7 @@ const useCart = (id) => {
   };
 };
 
-const useCartOnce = (id) => {
+export const useCartOnce = (id) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -55,5 +55,3 @@ const useCartOnce = (id) => {
     error,
   };
 };
-
-export { useCart, useCartOnce };

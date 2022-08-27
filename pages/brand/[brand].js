@@ -1,16 +1,16 @@
 import React from "react";
-import { db } from "@/config/firebase";
+import { db } from "../../config/firebase";
 
 import Head from "next/head";
 
 import styles from "./brand.module.scss";
 
-import Layout from "components/Layout";
-import Button from "@/components/FilterButton";
-import ProductCard from "@/components/ProductCard/product-card";
-import { useAuth } from "@/firebase/context";
+import Layout from "../../components/Layout";
+import Button from "../../components/FilterButton";
+import ProductCard from "../../components/ProductCard/product-card";
+import { useAuth } from "../../firebase/context";
 
-export default function BrandPage({ data, query }) {
+const BrandPage = ({ data, query }) => {
   const { user, loading } = useAuth();
 
   return (
@@ -52,7 +52,7 @@ export default function BrandPage({ data, query }) {
       </div>
     </Layout>
   );
-}
+};
 
 BrandPage.getInitialProps = async function ({ query }) {
   let data = {};
@@ -74,3 +74,5 @@ BrandPage.getInitialProps = async function ({ query }) {
     query,
   };
 };
+
+export default BrandPage;

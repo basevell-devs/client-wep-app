@@ -1,10 +1,10 @@
 import React from "react";
 
 import styles from "./social-button.module.scss";
-import GoogleIcon from "@/icons/google";
-import AppleIcon from "@/icons/apple";
+import GoogleIcon from "../icons/google";
+import AppleIcon from "../icons/apple";
 
-export default function SocialMediaButton({ icon, children, ...props }) {
+const SocialMediaButton = ({ icon, children, ...props }) => {
   return (
     <button className={styles.container} {...props}>
       {icon === "google" && <GoogleIcon />}
@@ -12,4 +12,6 @@ export default function SocialMediaButton({ icon, children, ...props }) {
       {children}
     </button>
   );
-}
+};
+
+export default SocialMediaButton;

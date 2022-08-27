@@ -1,20 +1,10 @@
 import React from "react";
 
 import styles from "./vertical.module.scss";
-import HeartIcon from "@/icons/heart";
+import HeartIcon from "../icons/heart";
 import Link from "next/link";
 
-export default function VerticalCard({
-  bgColor,
-  brand,
-  name,
-  price,
-  sale_price,
-  image,
-  border,
-  href,
-  ...props
-}) {
+const VerticalCard = ({ bgColor, brand, name, price, sale_price, image, border, href, ...props }) => {
   return (
     <Link href={href || "#"}>
       <div
@@ -25,9 +15,7 @@ export default function VerticalCard({
         }}
       >
         {sale_price && price && (
-          <button className={styles.favContainer}>
-            {(((price - sale_price) / price) * 100) | 0}%
-          </button>
+          <button className={styles.favContainer}>{(((price - sale_price) / price) * 100) | 0}%</button>
         )}
         <div className={styles.imageContainer}>
           {image && <img className={styles.image} src={image} loading="lazy" />}
@@ -49,4 +37,6 @@ export default function VerticalCard({
       </div>
     </Link>
   );
-}
+};
+
+export default VerticalCard;

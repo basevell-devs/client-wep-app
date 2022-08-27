@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-import AccountSidebar from "@/components/AccountSidebar";
-import Layout from "@/components/Layout";
-import AddressCard from "@/components/AddressCard";
+import AccountSidebar from "../../../components/AccountSidebar";
+import Layout from "../../../components/Layout";
+import AddressCard from "../../../components/AddressCard";
 import AddAddress from "./add-address";
 
 import styles from "./address.module.scss";
-import { useAuth } from "@/firebase/context";
+import { useAuth } from "../../../firebase/context";
 import { useAddresses } from "hooks/address.hook";
 import { useRouter } from "next/router";
 
-export default function Addresses() {
+const Addresses = () => {
   const [toggleModal, setModal] = useState(false);
 
   const { user } = useAuth();
@@ -31,19 +31,13 @@ export default function Addresses() {
           ) : data.length === 0 ? (
             <div style={{ display: "flex", flexDirection: "column" }}>
               <p>You have not any address</p>
-              <button
-                className={styles.addAddress}
-                onClick={() => setModal(true)}
-              >
+              <button className={styles.addAddress} onClick={() => setModal(true)}>
                 <p>+</p>Add New Address
               </button>
             </div>
           ) : (
             <div className={styles.addresses}>
-              <button
-                className={styles.addAddress}
-                onClick={() => setModal(true)}
-              >
+              <button className={styles.addAddress} onClick={() => setModal(true)}>
                 <p>+</p>Add New Address
               </button>
               {data?.map((item) => {
@@ -56,4 +50,6 @@ export default function Addresses() {
       </main>
     </Layout>
   );
-}
+};
+
+export default Addresses;

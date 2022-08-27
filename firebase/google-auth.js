@@ -1,6 +1,6 @@
 import { firebase, auth, db } from "../config/firebase";
 
-export default function googleAuth() {
+const googleAuth = () => {
   auth
     .signInWithPopup(new firebase.auth.GoogleAuthProvider())
     .then(function (result) {
@@ -27,4 +27,6 @@ export default function googleAuth() {
     .catch(function (error) {
       console.log(error);
     });
-}
+};
+
+export default googleAuth;

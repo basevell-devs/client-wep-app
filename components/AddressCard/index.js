@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import styles from "./address-card.module.scss";
 
 import UpdateAddress from "./update-address";
-import { deleteAddress } from "@/firebase/addresses";
+import { deleteAddress } from "../../firebase/addresses";
 
-export default function AddressCard({ data }) {
+const AddressCard = ({ data }) => {
   const [toggleModal, setModal] = useState(false);
   const { id, title, full_address, zipcode, region, city } = data;
 
@@ -28,9 +28,9 @@ export default function AddressCard({ data }) {
           Update
         </button>
       </div>
-      {toggleModal && (
-        <UpdateAddress addressData={data} closeEvent={() => setModal(false)} />
-      )}
+      {toggleModal && <UpdateAddress addressData={data} closeEvent={() => setModal(false)} />}
     </div>
   );
-}
+};
+
+export default AddressCard;

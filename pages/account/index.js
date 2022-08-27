@@ -1,27 +1,21 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { useAuth } from "@/firebase/context";
+import yup from "yup";
+import { useAuth } from "../../firebase/context";
 
 import styles from "./account.module.scss";
-import AccountSidebar from "@/components/AccountSidebar";
-import Layout from "@/components/Layout";
-import Input from "@/components/Input";
-import Button from "@/components/Button";
+import AccountSidebar from "../../components/AccountSidebar";
+import Layout from "../../components/Layout";
+import Input from "../../components/Input";
+import Button from "../../components/Button";
 
-import { updateUser, updatePassword } from "@/firebase/update-user";
+import { updateUser, updatePassword } from "../../firebase/update-user";
 import { useRouter } from "next/router";
 
 const schema = yup.object().shape({
-  name: yup
-    .string()
-    .required("* Name is required.")
-    .min(2, "* Name is too short"),
-  surname: yup
-    .string()
-    .required("* Surname is required.")
-    .min(2, "* Surname is too short"),
+  name: yup.string().required("* Name is required.").min(2, "* Name is too short"),
+  surname: yup.string().required("* Surname is required.").min(2, "* Surname is too short"),
   email: yup.string().email().required("* Email is required."),
   phone: yup
     .string()
@@ -41,12 +35,10 @@ const schema2 = yup.object().shape({
     .string()
     .required("* New Password is required.")
     .min(8, "* Password is too short - should be 8 chars minimum."),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref("newPassword"), null], "Passwords must match"),
+  confirmPassword: yup.string().oneOf([yup.ref("newPassword"), null], "Passwords must match"),
 });
 
-export default function AccountPage() {
+const AccountPage = () => {
   const [passwordError, setError] = useState(null);
   const [photo, setPhoto] = useState(null);
   const { user, loading } = useAuth();
@@ -82,7 +74,7 @@ export default function AccountPage() {
       .then(() =>
         update()
           .then(() => setError("Password Changed!"))
-          .catch((e) => setError(e.message))
+          .catch((e) => setError(e.message)),
       )
       .catch((e) => setError(e.message));
   };
@@ -108,11 +100,7 @@ export default function AccountPage() {
                   error={errors.name}
                 />
               </div>
-              {errors.name && (
-                <span style={{ color: "red", marginTop: 4, fontSize: 14 }}>
-                  {errors.name.message}
-                </span>
-              )}
+              {errors.name && <span style={{ color: "red", marginTop: 4, fontSize: 14 }}>{errors.name.message}</span>}
               <div className={styles.inputContainer}>
                 <span>Surname</span>
                 <Input
@@ -125,9 +113,7 @@ export default function AccountPage() {
                 />
               </div>
               {errors.surname && (
-                <span style={{ color: "red", marginTop: 4, fontSize: 14 }}>
-                  {errors.surname.message}
-                </span>
+                <span style={{ color: "red", marginTop: 4, fontSize: 14 }}>{errors.surname.message}</span>
               )}
               <div className={styles.inputContainer}>
                 <span>Email</span>
@@ -140,11 +126,7 @@ export default function AccountPage() {
                   error={errors.email}
                 />
               </div>
-              {errors.email && (
-                <span style={{ color: "red", marginTop: 4, fontSize: 14 }}>
-                  {errors.email.message}
-                </span>
-              )}
+              {errors.email && <span style={{ color: "red", marginTop: 4, fontSize: 14 }}>{errors.email.message}</span>}
               <div className={styles.inputContainer}>
                 <span>Phone Number</span>
                 <Input
@@ -155,11 +137,7 @@ export default function AccountPage() {
                   error={errors.phone}
                 />
               </div>
-              {errors.phone && (
-                <span style={{ color: "red", marginTop: 4, fontSize: 14 }}>
-                  {errors.phone.message}
-                </span>
-              )}
+              {errors.phone && <span style={{ color: "red", marginTop: 4, fontSize: 14 }}>{errors.phone.message}</span>}
               <div className={styles.inputContainer}>
                 <span>Profile Photo</span>
 
@@ -184,46 +162,26 @@ export default function AccountPage() {
             <form key="password-form" onSubmit={handleSubmit2(changePassword)}>
               <div className={styles.inputContainer}>
                 <span>Current Password</span>
-                <Input
-                  name="currentPassword"
-                  register={register2}
-                  placeholder="Current Password"
-                  noMargin
-                />
+                <Input name="currentPassword" register={register2} placeholder="Current Password" noMargin />
               </div>
               <div className={styles.inputContainer}>
                 <span>New Password</span>
-                <Input
-                  name="newPassword"
-                  register={register2}
-                  placeholder="New Password"
-                  noMargin
-                />
+                <Input name="newPassword" register={register2} placeholder="New Password" noMargin />
               </div>
               {errors2.newPassword && (
-                <span style={{ color: "red", marginTop: 4, fontSize: 14 }}>
-                  {errors2.newPassword.message}
-                </span>
+                <span style={{ color: "red", marginTop: 4, fontSize: 14 }}>{errors2.newPassword.message}</span>
               )}
               <div className={styles.inputContainer}>
                 <span>Confirm New Password</span>
-                <Input
-                  name="confirmPassword"
-                  register={register2}
-                  placeholder="Confirm New Password"
-                  noMargin
-                />
+                <Input name="confirmPassword" register={register2} placeholder="Confirm New Password" noMargin />
               </div>
               {errors2.confirmPassword && (
-                <span style={{ color: "red", marginTop: 4, fontSize: 14 }}>
-                  {errors2.confirmPassword.message}
-                </span>
+                <span style={{ color: "red", marginTop: 4, fontSize: 14 }}>{errors2.confirmPassword.message}</span>
               )}
               {passwordError && (
                 <span
                   style={{
-                    color:
-                      passwordError === "Password Changed!" ? "black" : "red",
+                    color: passwordError === "Password Changed!" ? "black" : "red",
                     marginTop: 4,
                     fontSize: 14,
                   }}
@@ -231,11 +189,7 @@ export default function AccountPage() {
                   {passwordError}
                 </span>
               )}
-              <Button
-                type="submit"
-                name="password_button"
-                value="Change Password"
-              >
+              <Button type="submit" name="password_button" value="Change Password">
                 Confirm
               </Button>
             </form>
@@ -244,4 +198,6 @@ export default function AccountPage() {
       </main>
     </Layout>
   );
-}
+};
+
+export default AccountPage;

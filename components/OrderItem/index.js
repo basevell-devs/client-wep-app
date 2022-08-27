@@ -4,7 +4,7 @@ import { format } from "date-fns";
 import styles from "./order.module.scss";
 import { useAddress } from "hooks/address.hook";
 
-export default function OrderItem({ data }) {
+const OrderItem = ({ data }) => {
   const address = useAddress(data.address);
   const { title, region, city, full_address, zipcode } = address.data;
   console.log(new Date(data.date));
@@ -63,4 +63,6 @@ export default function OrderItem({ data }) {
       </div>
     </div>
   );
-}
+};
+
+export default OrderItem;

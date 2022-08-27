@@ -2,11 +2,11 @@ import Head from "next/head";
 
 import styles from "./category.module.scss";
 
-import Layout from "components/Layout";
-import { useAuth } from "@/firebase/context";
-import { db } from "@/config/firebase";
-import Button from "@/components/FilterButton";
-import ProductCard from "@/components/ProductCard/product-card";
+import Layout from "../../components/Layout";
+import { useAuth } from "../../firebase/context";
+import { db } from "../../config/firebase";
+import Button from "../../components/FilterButton";
+import ProductCard from "../../components/ProductCard/product-card";
 
 const getEmoji = {
   clothing: "👚",
@@ -17,7 +17,7 @@ const getEmoji = {
   inspiration: "💎",
 };
 
-export default function Category({ data, query }) {
+const Category = ({ data, query }) => {
   const { user, loading } = useAuth();
 
   console.log(user, loading);
@@ -67,7 +67,7 @@ export default function Category({ data, query }) {
       </div>
     </Layout>
   );
-}
+};
 
 Category.getInitialProps = async function ({ query }) {
   let data = {};
@@ -91,3 +91,5 @@ Category.getInitialProps = async function ({ query }) {
     query,
   };
 };
+
+export default Category;

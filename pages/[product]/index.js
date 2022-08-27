@@ -1,22 +1,22 @@
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
-import Link from 'next/link';
+import { useState, useEffect } from "react";
+import Head from "next/head";
+import Link from "next/link";
 
-import { db } from '@/config/firebase';
-import { useAuth } from '@/firebase/context';
-import { useCart } from 'hooks/cart.hook';
-import { removeFavorite, addFavorite, addToCart } from '@/firebase/product';
+import { db } from "../../config/firebase";
+import { useAuth } from "../../firebase/context";
+import { useCart } from "hooks/cart.hook";
+import { removeFavorite, addFavorite, addToCart } from "../../firebase/product";
 
-import styles from './product.module.scss';
+import styles from "./product.module.scss";
 
-import Layout from 'components/Layout';
-import Button from '@/components/Button';
-import HeartIcon from '@/icons/heart';
-import HeartFilled from '@/icons/heart-filled';
-import ErrorPage from 'pages/404';
-import { useRouter } from 'next/router';
+import Layout from "../../components/Layout";
+import Button from "../../components/Button";
+import HeartIcon from "../../components/icons/heart";
+import HeartFilled from "../icons/heart-filled";
+import ErrorPage from "pages/404";
+import { useRouter } from "next/router";
 
-export default function Product({ data, query }) {
+const Product = ({ data, query }) => {
   if (!data.product_name) {
     return <ErrorPage />;
   }
@@ -47,7 +47,7 @@ export default function Product({ data, query }) {
   };
 
   const favoriteEvent = () => {
-    user ? (isFavorite ? removeEvent(id) : addEvent(id)) : typeof window !== 'undefined' && router.push('/login');
+    user ? (isFavorite ? removeEvent(id) : addEvent(id)) : typeof window !== "undefined" && router.push("/login");
   };
 
   const cart = useCart().data;
@@ -55,7 +55,7 @@ export default function Product({ data, query }) {
   console.log(cart);
 
   const addCartEvent = () => {
-    if (!user && !loading && typeof window !== 'undefined') router.push('/login');
+    if (!user && !loading && typeof window !== "undefined") router.push("/login");
     else {
       if (selectedSize) {
         const newCart = {
@@ -67,7 +67,7 @@ export default function Product({ data, query }) {
       if (sizes?.length === 0) {
         const newCart = {
           ...cart,
-          [id]: cart.hasOwnProperty(id) ? [...cart[id], '-'] : ['-'],
+          [id]: cart.hasOwnProperty(id) ? [...cart[id], "-"] : ["-"],
         };
         addToCart(newCart);
       }
@@ -94,7 +94,7 @@ export default function Product({ data, query }) {
                     key={index}
                     src={image}
                     className={styles.smallPhoto}
-                    style={{ borderColor: selectedPhoto === index && 'black' }}
+                    style={{ borderColor: selectedPhoto === index && "black" }}
                     onClick={() => setSelectedPhoto(index)}
                     loading="lazy"
                   />
@@ -105,13 +105,13 @@ export default function Product({ data, query }) {
           </div>
           <div className={styles.productInfos}>
             <div className={styles.header}>
-              <h1 className={styles.productTitle}>{product_name || ''}</h1>
-              <Link href={`/brand/${brand}`}>{brand || ''}</Link>
+              <h1 className={styles.productTitle}>{product_name || ""}</h1>
+              <Link href={`/brand/${brand}`}>{brand || ""}</Link>
             </div>
             <span className={styles.priceText}>{price || 0}N</span>
             <div className={styles.saleContainer}>
               <span className={styles.saleText}>{sale_price || 0}N</span>
-              <span className={styles.savedText}>{'(You will be saved ' + (price - sale_price) + 'N!)'}</span>
+              <span className={styles.savedText}>{"(You will be saved " + (price - sale_price) + "N!)"}</span>
             </div>
             <hr />
             <div className={styles.sizes}>
@@ -122,8 +122,8 @@ export default function Product({ data, query }) {
                     key={size}
                     className={styles.sizeButton}
                     style={{
-                      borderColor: selectedSize === size && 'black',
-                      fontWeight: selectedSize === size && 'bold',
+                      borderColor: selectedSize === size && "black",
+                      fontWeight: selectedSize === size && "bold",
                     }}
                     onClick={() => setSelectedSize(size)}
                   >
@@ -151,13 +151,13 @@ export default function Product({ data, query }) {
       </div>
     </Layout>
   );
-}
+};
 
 Product.getInitialProps = async function ({ query }) {
   let data = {};
   let error = {};
   await db
-    .collection('Products')
+    .collection("Products")
     .doc(query.product)
     .get()
     .then(function (doc) {
@@ -171,3 +171,5 @@ Product.getInitialProps = async function ({ query }) {
     query,
   };
 };
+
+export default Product;

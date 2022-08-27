@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 
-import AccountSidebar from "@/components/AccountSidebar";
-import Layout from "@/components/Layout";
+import AccountSidebar from "../../../components/AccountSidebar";
+import Layout from "../../../components/Layout";
 
 import styles from "./favorites.module.scss";
-import { useAuth } from "@/firebase/context";
-import { db, auth } from "@/config/firebase";
-import ProductCard from "@/components/ProductCard/product-card";
+import { useAuth } from "../../../firebase/context";
+import { db, auth } from "../../../config/firebase";
+import ProductCard from "../../../components/ProductCard/product-card";
 import { useRouter } from "next/router";
 
-export default function Favorites() {
+const Favorites = () => {
   const [products, setProducts] = useState();
   const [loading, setLoading] = useState(true);
 
@@ -27,7 +27,7 @@ export default function Favorites() {
               .filter((item) => user.favorites.includes(item.id))
               .map((doc) => {
                 return { id: doc.id, ...doc.data() };
-              })
+              }),
           );
           setLoading(false);
         });
@@ -61,4 +61,6 @@ export default function Favorites() {
       </main>
     </Layout>
   );
-}
+};
+
+export default Favorites;

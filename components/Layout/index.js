@@ -2,9 +2,9 @@ import React from "react";
 
 import styles from "./layout.module.scss";
 import Header from "../Header";
-import CategoriesBar from "components/Categories";
+import CategoriesBar from "../Categories";
 
-export default function Layout({ children, noCategories }) {
+const Layout = ({ children, noCategories }) => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -16,4 +16,6 @@ export default function Layout({ children, noCategories }) {
       </div>
     </div>
   );
-}
+};
+
+export default Layout;

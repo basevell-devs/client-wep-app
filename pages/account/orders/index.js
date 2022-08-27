@@ -1,15 +1,15 @@
 import React from "react";
 
-import AccountSidebar from "@/components/AccountSidebar";
-import Layout from "@/components/Layout";
+import AccountSidebar from "../components/AccountSidebar";
+import Layout from "../components/Layout";
 
 import styles from "./orders.module.scss";
-import { useAuth } from "@/firebase/context";
-import OrderItem from "@/components/OrderItem";
+import { useAuth } from "../../../firebase/context";
+import OrderItem from "../../../components/OrderItem";
 import { useOrders } from "hooks/order.hook";
 import { useRouter } from "next/router";
 
-export default function Orders() {
+const Orders = () => {
   const { user, loading } = useAuth();
 
   const { data } = useOrders();
@@ -35,4 +35,6 @@ export default function Orders() {
       </main>
     </Layout>
   );
-}
+};
+
+export default Orders;

@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import { useRouter } from 'next/router';
+import React, { useState } from "react";
+import { useRouter } from "next/router";
 
-import styles from './login.module.scss';
-import LoginForm from './login-form';
-import RegisterForm from './register-form';
-import { auth } from '../../config/firebase';
+import styles from "./login.module.scss";
+import LoginForm from "./login-form";
+import RegisterForm from "./register-form";
+import { auth } from "../../config/firebase";
 
-export default function LoginPage() {
-  const [page, setPage] = useState('login');
+const LoginPage = () => {
+  const [page, setPage] = useState("login");
 
   const router = useRouter();
 
   auth.onAuthStateChanged(function (user) {
     if (user) {
       console.log(user);
-      typeof window !== 'undefined' && router.push('/');
+      typeof window !== "undefined" && router.push("/");
     }
   });
 
@@ -25,23 +25,25 @@ export default function LoginPage() {
         <div className={styles.switchContainer}>
           <button
             className={styles.switchButton}
-            onClick={() => setPage('login')}
-            style={{ backgroundColor: page === 'login' ? 'white' : '#f6f6f6' }}
+            onClick={() => setPage("login")}
+            style={{ backgroundColor: page === "login" ? "white" : "#f6f6f6" }}
           >
             <span>Login</span>
           </button>
           <button
             className={styles.switchButton}
-            onClick={() => setPage('register')}
+            onClick={() => setPage("register")}
             style={{
-              backgroundColor: page === 'register' ? 'white' : '#f6f6f6',
+              backgroundColor: page === "register" ? "white" : "#f6f6f6",
             }}
           >
             <span>Register</span>
           </button>
         </div>
-        {page === 'login' ? <LoginForm /> : <RegisterForm />}
+        {page === "login" ? <LoginForm /> : <RegisterForm />}
       </div>
     </div>
   );
-}
+};
+
+export default LoginPage;

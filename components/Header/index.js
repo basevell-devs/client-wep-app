@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
+import React, { useState } from "react";
+import Link from "next/link";
 
-import styles from './header.module.scss';
+import styles from "./header.module.scss";
 
-import SearchIcon from '@/icons/search';
-import CartIcon from '@/icons/cart';
-import ArrowIcon from '@/icons/arrow';
+import SearchIcon from "../icons/search";
+import CartIcon from "../icons/cart";
+import ArrowIcon from "../icons/arrow";
 
-import { useAuth } from '@/firebase/context';
-// import { db, auth } from '@/config/firebase';
-import { useCart } from 'hooks/cart.hook';
-import { useRouter } from 'next/router';
-import MenuIcon from '@/icons/menu';
+import { useAuth } from "../../firebase/context";
+// import { db, auth } from '../config/firebase';
+import {} from "../../hooks/cart.hook";
+
+import { useRouter } from "next/router";
+import MenuIcon from "../icons/menu";
 
 const Header = () => {
   const [showHeader, setShowHeader] = useState({
-    transform: 'translate3d(100vw, 0, 0)',
+    transform: "translate3d(100vw, 0, 0)",
   });
   const [input, setInput] = useState(null);
 
@@ -46,7 +47,7 @@ const Header = () => {
               width={30}
               height={30}
               className={styles.menuIcon}
-              onClick={() => setShowHeader({ transform: 'translate3d(0vw, 0, 0)' })}
+              onClick={() => setShowHeader({ transform: "translate3d(0vw, 0, 0)" })}
             />
           </div>
         </div>
@@ -70,12 +71,12 @@ const Header = () => {
         <div
           className={styles.background}
           style={showHeader}
-          onClick={() => setShowHeader({ transform: 'translate3d(100vw, 0, 0)' })}
+          onClick={() => setShowHeader({ transform: "translate3d(100vw, 0, 0)" })}
         />
       </div>
       <div className={styles.searchContainer}>
         <SearchIcon width={20} height={20} fill="grey" className={styles.searchIcon} />
-        <form onSubmit={() => input && typeof window !== 'undefined' && router.push(`/search/${input}`)}>
+        <form onSubmit={() => input && typeof window !== "undefined" && router.push(`/search/${input}`)}>
           <input
             className={styles.searchInput}
             placeholder="Search for products, brands and more... "
@@ -94,12 +95,12 @@ const Header = () => {
         <Link href="/account">
           <div className={styles.profileContainer}>
             <img
-              src={user?.photoUrl || 'https://picsum.photos/200/200'}
+              src={user?.photoUrl || "https://picsum.photos/200/200"}
               className={styles.profilePhoto}
               loading="lazy"
             />
             <span>
-              Hello <span style={{ fontWeight: 'normal' }}>{user?.name || 'Guest'}</span>
+              Hello <span style={{ fontWeight: "normal" }}>{user?.name || "Guest"}</span>
             </span>
             <ArrowIcon width={10} height={10} className={styles.arrowIcon} />
             <div className={styles.dropdown}>

@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import styles from './product.module.scss';
-import HeartIcon from '@/icons/heart';
-import Link from 'next/link';
-import HeartFilled from '@/icons/heart-filled';
-import { addFavorite, removeFavorite } from '@/firebase/product';
-import { useRouter } from 'next/router';
-import { useAuth } from '@/firebase/context';
+import styles from "./product.module.scss";
+import HeartIcon from "../icons/heart";
+import Link from "next/link";
+import HeartFilled from "../icons/heart-filled";
+import { addFavorite, removeFavorite } from "../firebase/product";
+import { useRouter } from "next/router";
+import { useAuth } from "../firebase/context";
 
-export default function ProductCard({ bgColor, id, brand, name, price, sale_price, image, favorite, ...props }) {
+const ProductCard = ({ bgColor, id, brand, name, price, sale_price, image, favorite, ...props }) => {
   const [isFavorite, setFavorite] = useState(favorite);
 
   const { user, loading } = useAuth();
@@ -26,19 +26,19 @@ export default function ProductCard({ bgColor, id, brand, name, price, sale_pric
 
   const favoriteEvent = () => {
     if (user && !loading) isFavorite ? removeEvent(id) : addEvent(id);
-    else typeof window !== 'undefined' && router.push('/login');
+    else typeof window !== "undefined" && router.push("/login");
   };
 
   const goToProduct = (target) => {
     console.log(target);
-    target?.localName !== 'button' && typeof window !== 'undefined' && router.push(`/${id}`);
+    target?.localName !== "button" && typeof window !== "undefined" && router.push(`/${id}`);
   };
 
   return (
     <div
       className={styles.container}
       style={{
-        backgroundColor: bgColor || '',
+        backgroundColor: bgColor || "",
       }}
       onClick={(e) => goToProduct(e.target)}
       {...props}
@@ -68,4 +68,6 @@ export default function ProductCard({ bgColor, id, brand, name, price, sale_pric
       </div>
     </div>
   );
-}
+};
+
+export default ProductCard;

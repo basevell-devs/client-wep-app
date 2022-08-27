@@ -1,17 +1,17 @@
 import Head from "next/head";
 import styles from "./index.module.scss";
 
-import Button from "components/FilterButton";
-import HorizontalCard from "components/HomeCard/horizontal-card";
-import VerticalCard from "components/HomeCard/vertical-card";
-import Products from "components/HomeProducts";
+import Button from "../components/FilterButton";
+import HorizontalCard from "../components/HomeCard/horizontal-card";
+import VerticalCard from "../components/HomeCard/vertical-card";
+import Products from "../components/HomeProducts";
 
-import { db } from "config/firebase";
-import Layout from "components/Layout";
+import { db } from "../config/firebase";
+import Layout from "../components/Layout";
 
 import { useAuth } from "../firebase/context";
 
-export default function Home() {
+const Home = () => {
   const auth = useAuth();
 
   return (
@@ -118,4 +118,6 @@ export default function Home() {
       </div>
     </Layout>
   );
-}
+};
+
+export default Home;

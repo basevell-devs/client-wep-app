@@ -2,13 +2,7 @@ import React, { useState } from "react";
 
 import styles from "./input.module.scss";
 
-export default function Input({
-  register,
-  required = true,
-  error,
-  noMargin,
-  ...props
-}) {
+const Input = ({ register, required = true, error, noMargin, ...props }) => {
   const [focus, setFocus] = useState(false);
   return (
     <input
@@ -24,4 +18,6 @@ export default function Input({
       {...props}
     />
   );
-}
+};
+
+export default Input;

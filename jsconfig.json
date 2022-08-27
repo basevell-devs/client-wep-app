@@ -1,12 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/icons/*": ["components/icons/*"],
-      "@/styles/*": ["styles/*"],
-      "@/components/*": ["components/*"],
-      "@/config/*": ["config/*"],
-      "@/firebase/*": ["firebase/*"]
-    }
+    "baseUrl": "."
   }
 }

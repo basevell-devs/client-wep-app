@@ -1,6 +1,6 @@
-import * as React from "react";
+import React from "react";
 
-function GoogleIcon(props) {
+const GoogleIcon = (props) => {
   return (
     <svg width={24} height={25} viewBox="0 0 24 25" {...props}>
       <g fill="none">
@@ -23,6 +23,6 @@ function GoogleIcon(props) {
       </g>
     </svg>
   );
-}
+};
 
 export default GoogleIcon;

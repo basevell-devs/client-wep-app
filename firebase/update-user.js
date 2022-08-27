@@ -1,6 +1,6 @@
 import { firebase, auth, db } from "../config/firebase";
 
-function updateUser({ email, name, surname, phoneNumber, photo, finalEvent }) {
+export const updateUser = ({ email, name, surname, phoneNumber, photo, finalEvent }) => {
   const currentUser = auth.currentUser.uid;
 
   if (photo) {
@@ -35,15 +35,12 @@ function updateUser({ email, name, surname, phoneNumber, photo, finalEvent }) {
       email,
       phoneNumber: phoneNumber || "",
     });
-}
+};
 
-function updatePassword({ currentPassword, newPassword }) {
+export const updatePassword = ({ currentPassword, newPassword }) => {
   const currentUser = auth.currentUser;
 
-  const credential = firebase.auth.EmailAuthProvider.credential(
-    firebase.auth().currentUser.email,
-    currentPassword
-  );
+  const credential = firebase.auth.EmailAuthProvider.credential(firebase.auth().currentUser.email, currentPassword);
 
   const update = () => {
     return currentUser
@@ -64,6 +61,4 @@ function updatePassword({ currentPassword, newPassword }) {
     reauth,
     update,
   };
-}
-
-export { updateUser, updatePassword };
+};

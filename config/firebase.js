@@ -1,26 +1,18 @@
-import firebase from 'firebase';
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
-export const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID + '.firebaseapp.com',
-  databaseURL: 'https://' + process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID + '.firebaseio.com',
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+const firebaseConfig = {
+  apiKey: "AIzaSyAhJa-tyuRQy4Hz4rarpVs5fLUtMF5K4Hw",
+  authDomain: "basevell-dev.firebaseapp.com",
+  projectId: "basevell-dev",
+  storageBucket: "basevell-dev.appspot.com",
+  messagingSenderId: "215805846846",
+  appId: "1:215805846846:web:44d7f0125a48f5204bf86f",
+  measurementId: "G-HZY19FGS04",
 };
 
-try {
-  firebase.initializeApp(firebaseConfig);
-} catch (err) {
-  if (!/already exists/.test(err.message)) {
-    console.error('Firebase initialization error', err.stack);
-  }
-}
+export const app = initializeApp(firebaseConfig);
+export const auth = getAuth();
 
-const app = firebase.app();
-const auth = firebase.auth();
-const db = firebase.firestore();
-
-export { firebase, auth, db };
-console.log(app.name ? 'Firebase Mode Activated!' : 'Firebase not working :(');
+// export { firebase, auth, db };
+// console.log(app.name ? "Firebase Mode Activated!" : "Firebase not working :(");

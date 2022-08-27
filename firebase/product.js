@@ -1,6 +1,6 @@
 import { firebase, auth, db } from "../config/firebase";
 
-function addFavorite(id) {
+export const addFavorite = (id) => {
   const currentUser = auth.currentUser.uid;
 
   return db
@@ -9,9 +9,9 @@ function addFavorite(id) {
     .update({
       favorites: firebase.firestore.FieldValue.arrayUnion(id),
     });
-}
+};
 
-function removeFavorite(id) {
+export const removeFavorite = (id) => {
   const currentUser = auth.currentUser.uid;
 
   return db
@@ -20,14 +20,12 @@ function removeFavorite(id) {
     .update({
       favorites: firebase.firestore.FieldValue.arrayRemove(id),
     });
-}
+};
 
-function addToCart(newCart) {
+export const addToCart = (newCart) => {
   const currentUser = auth.currentUser.uid;
 
   return db.collection("Users").doc(currentUser).update({
     cart: newCart,
   });
-}
-
-export { addFavorite, removeFavorite, addToCart };
+};

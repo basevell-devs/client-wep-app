@@ -1,7 +1,7 @@
-import { db } from "@/config/firebase";
+import { db } from "../config/firebase";
 import { useState, useEffect } from "react";
 
-const useProduct = (id) => {
+export const useProduct = (id) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -28,7 +28,7 @@ const useProduct = (id) => {
   };
 };
 
-const useCategoryProducts = (category) => {
+export const useCategoryProducts = (category) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -57,5 +57,3 @@ const useCategoryProducts = (category) => {
     error,
   };
 };
-
-export { useProduct, useCategoryProducts };

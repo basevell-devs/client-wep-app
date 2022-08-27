@@ -2,9 +2,9 @@ import React from "react";
 
 import styles from "./sidebar.module.scss";
 import Link from "next/link";
-import HelpIcon from "@/icons/help";
+import HelpIcon from "../icons/help";
 
-import { useAuth } from "@/firebase/context";
+import { useAuth } from "../firebase/context";
 
 const SidebarItem = ({ name, link, emoji }) => {
   return (
@@ -19,7 +19,7 @@ const SidebarItem = ({ name, link, emoji }) => {
   );
 };
 
-export default function AccountSidebar() {
+const AccountSidebar = () => {
   const { user } = useAuth();
 
   return (
@@ -40,4 +40,6 @@ export default function AccountSidebar() {
       </div>
     </div>
   );
-}
+};
+
+export default AccountSidebar;

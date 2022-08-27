@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import yup from "yup";
 
-import Input from "@/components/Input";
-import Button from "@/components/Button";
+import Input from "../../components/Input";
+import Button from "../../components/Button";
 import Link from "next/link";
-import SocialMediaButton from "@/components/SocialMediaButton";
+import SocialMediaButton from "../../components/SocialMediaButton";
 import emailLogin from "firebase/login";
 import googleAuth from "firebase/google-auth";
 
@@ -18,7 +18,7 @@ const schema = yup.object().shape({
     .min(8, "* Password is too short - should be 8 chars minimum."),
 });
 
-export default function LoginForm() {
+const LoginForm = () => {
   const [loginError, setLoginError] = useState();
 
   const { register, handleSubmit, watch, errors } = useForm({
@@ -26,39 +26,15 @@ export default function LoginForm() {
   });
 
   const onSubmit = (data) => {
-    emailLogin({ email: data.email, password: data.password }).catch((e) =>
-      setLoginError(e.message)
-    );
+    emailLogin({ email: data.email, password: data.password }).catch((e) => setLoginError(e.message));
   };
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      style={{ display: "flex", flexDirection: "column" }}
-    >
-      <Input
-        name="email"
-        register={register}
-        placeholder="E-mail"
-        error={errors.email}
-      />
-      {errors.email && (
-        <span style={{ color: "red", marginTop: 4, fontSize: 14 }}>
-          {errors.email.message}
-        </span>
-      )}
+    <form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex", flexDirection: "column" }}>
+      <Input name="email" register={register} placeholder="E-mail" error={errors.email} />
+      {errors.email && <span style={{ color: "red", marginTop: 4, fontSize: 14 }}>{errors.email.message}</span>}
 
-      <Input
-        name="password"
-        register={register}
-        placeholder="Password"
-        type="password"
-        error={errors.password}
-      />
-      {errors.password && (
-        <span style={{ color: "red", marginTop: 4, fontSize: 14 }}>
-          {errors.password.message}
-        </span>
-      )}
+      <Input name="password" register={register} placeholder="Password" type="password" error={errors.password} />
+      {errors.password && <span style={{ color: "red", marginTop: 4, fontSize: 14 }}>{errors.password.message}</span>}
 
       <Button type="submit">Login</Button>
       {loginError && (
@@ -94,15 +70,13 @@ export default function LoginForm() {
         Login with social media
       </span>
       <div style={{ display: "flex" }}>
-        <SocialMediaButton
-          style={{ marginRight: 20 }}
-          icon="google"
-          onClick={googleAuth}
-        >
+        <SocialMediaButton style={{ marginRight: 20 }} icon="google" onClick={googleAuth}>
           Google
         </SocialMediaButton>
         <SocialMediaButton icon="apple">Apple</SocialMediaButton>
       </div>
     </form>
   );
-}
+};
+
+export default LoginForm;
