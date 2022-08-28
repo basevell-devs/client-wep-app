@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import AccountSidebar from "../../../components/AccountSidebar";
 import Layout from "../../../components/Layout";
 
+import { collection, getDocs } from "firebase/firestore";
+
 import styles from "./favorites.module.scss";
 import { useAuth } from "../../../firebase/context";
 import { db, auth } from "../../../config/firebase";
@@ -13,24 +15,48 @@ const Favorites = () => {
   const [products, setProducts] = useState();
   const [loading, setLoading] = useState(true);
 
+  const collectionProducts = collection(db, "Products");
+
   const { user } = useAuth();
   const userLoading = useAuth().loading;
 
   useEffect(() => {
-    user?.favorites.length > 0 &&
-      db
-        .collection("Products")
-        .get()
-        .then((querySnapshot) => {
-          setProducts(
-            querySnapshot.docs
-              .filter((item) => user.favorites.includes(item.id))
-              .map((doc) => {
-                return { id: doc.id, ...doc.data() };
-              }),
-          );
-          setLoading(false);
-        });
+    const fetchFromFirestore = async () => {
+      const data = await getDocs(collectionProducts);
+
+      const product = data.docs[0]._document.data.value.mapValue.fields.product_name;
+
+      if (product) {
+        const productData = await getDocs(collectionProducts, "Products");
+
+        const productArray = productData.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+
+        setProducts(productArray);
+
+        setLoading(false);
+      }
+    };
+
+    fetchFromFirestore();
+
+    user && console.log(user);
+    // user?.favorites.length > 0 &&
+    //   db
+    //     .collection("Products")
+    //     .get()
+    //     .then((querySnapshot) => {
+    //       setProducts(
+    //         querySnapshot.docs
+    //           .filter((item) => user.favorites.includes(item.id))
+    //           .map((doc) => {
+    //             return { id: doc.id, ...doc.data() };
+    //           }),
+    //       );
+    //       setLoading(false);
+    //     });
   }, [user]);
 
   if (!user && !userLoading) useRouter().push("/login");

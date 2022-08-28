@@ -4,9 +4,9 @@ import styles from "./product.module.scss";
 import HeartIcon from "../icons/heart";
 import Link from "next/link";
 import HeartFilled from "../icons/heart-filled";
-import { addFavorite, removeFavorite } from "../firebase/product";
+import { addFavorite, removeFavorite } from "../../firebase/product";
 import { useRouter } from "next/router";
-import { useAuth } from "../firebase/context";
+import { useAuth } from "../../firebase/context";
 
 const ProductCard = ({ bgColor, id, brand, name, price, sale_price, image, favorite, ...props }) => {
   const [isFavorite, setFavorite] = useState(favorite);

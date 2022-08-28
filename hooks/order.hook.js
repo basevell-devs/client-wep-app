@@ -14,8 +14,6 @@ const useOrders = () => {
     const fetchFromFirestore = async () => {
       const data = await getDocs(collectionData);
 
-      console.log(data);
-
       const orders = data.docs[0]._document.data.value.mapValue.fields.orders;
 
       if (orders) {
