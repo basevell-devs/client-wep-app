@@ -20,8 +20,6 @@ const SidebarItem = ({ name, link, emoji }) => {
 };
 
 const AccountSidebar = () => {
-  console.log(useAuth);
-
   const { user } = useAuth();
 
   return (

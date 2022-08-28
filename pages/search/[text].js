@@ -13,7 +13,7 @@ import { useAuth } from "../../firebase/context";
 const SearchPage = ({ data, query }) => {
   const { user, loading } = useAuth();
 
-  console.log(data, query);
+  // console.log(data, query);
 
   return (
     <Layout>

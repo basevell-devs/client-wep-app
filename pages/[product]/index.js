@@ -52,7 +52,7 @@ const Product = ({ data, query }) => {
 
   const cart = useCart().data;
 
-  console.log(cart);
+  // console.log(cart);
 
   const addCartEvent = () => {
     if (!user && !loading && typeof window !== "undefined") router.push("/login");

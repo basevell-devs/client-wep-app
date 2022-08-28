@@ -20,7 +20,7 @@ const getEmoji = {
 const Category = ({ data, query }) => {
   const { user, loading } = useAuth();
 
-  console.log(user, loading);
+  // console.log(user, loading);
 
   const formattedName =
     query.category === "gifts_and_living"

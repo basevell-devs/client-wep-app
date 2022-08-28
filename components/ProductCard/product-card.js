@@ -30,7 +30,7 @@ const ProductCard = ({ bgColor, id, brand, name, price, sale_price, image, favor
   };
 
   const goToProduct = (target) => {
-    console.log(target);
+    // console.log(target);
     target?.localName !== "button" && typeof window !== "undefined" && router.push(`/${id}`);
   };
 

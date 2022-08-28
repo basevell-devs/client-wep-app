@@ -1,14 +1,14 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import yup from "yup";
+import * as yup from "yup";
 
 import styles from "./update.module.scss";
 
-import Input from "../components/Input";
-import Button from "../components/Button";
+import Input from "../../components/Input";
+import Button from "../../components/Button";
 
-import { updateAddress } from "../firebase/addresses";
+import { updateAddress } from "../../firebase/addresses";
 
 const schema = yup.object().shape({
   title: yup.string().required("* Title is required.").min(2, "* Title is too short"),

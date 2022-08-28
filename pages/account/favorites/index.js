@@ -41,22 +41,6 @@ const Favorites = () => {
     };
 
     fetchFromFirestore();
-
-    user && console.log(user);
-    // user?.favorites.length > 0 &&
-    //   db
-    //     .collection("Products")
-    //     .get()
-    //     .then((querySnapshot) => {
-    //       setProducts(
-    //         querySnapshot.docs
-    //           .filter((item) => user.favorites.includes(item.id))
-    //           .map((doc) => {
-    //             return { id: doc.id, ...doc.data() };
-    //           }),
-    //       );
-    //       setLoading(false);
-    //     });
   }, [user]);
 
   if (!user && !userLoading) useRouter().push("/login");

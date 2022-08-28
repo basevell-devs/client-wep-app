@@ -14,23 +14,12 @@ export const useCart = (id) => {
       if (user) {
         setData(user.cart);
 
-        console.log(user);
+        // console.log(user);
       } else {
+        setError("Something went wrong...");
         setLoading(false);
       }
     });
-
-    // async function fetchFromFirestore() {
-    //   auth.currentUser &&
-    //     db
-    //       .collection("Users")
-    //       .doc(auth.currentUser?.uid)
-    //       .onSnapshot(function (doc) {
-    //         setData(doc.data().cart);
-    //       });
-    // }
-
-    // fetchFromFirestore();
   }, [auth.currentUser]);
 
   return {
@@ -44,11 +33,11 @@ export const useCartOnce = (id) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  console.log("once");
+  // console.log("once");
 
   useEffect(() => {
     async function fetchFromFirestore() {
-      console.log("once inner");
+      // console.log("once inner");
 
       db.collection("Users")
         .doc(auth.currentUser?.uid)
