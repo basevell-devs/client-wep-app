@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "@firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAhJa-tyuRQy4Hz4rarpVs5fLUtMF5K4Hw",
@@ -11,8 +12,6 @@ const firebaseConfig = {
   measurementId: "G-HZY19FGS04",
 };
 
-export const app = initializeApp(firebaseConfig);
-export const auth = getAuth();
-
-// export { firebase, auth, db };
-// console.log(app.name ? "Firebase Mode Activated!" : "Firebase not working :(");
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const db = getFirestore(app);

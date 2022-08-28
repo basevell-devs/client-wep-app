@@ -4,7 +4,7 @@ import styles from "./sidebar.module.scss";
 import Link from "next/link";
 import HelpIcon from "../icons/help";
 
-import { useAuth } from "../firebase/context";
+import { useAuth } from "../../firebase/context";
 
 const SidebarItem = ({ name, link, emoji }) => {
   return (
@@ -20,6 +20,8 @@ const SidebarItem = ({ name, link, emoji }) => {
 };
 
 const AccountSidebar = () => {
+  console.log(useAuth);
+
   const { user } = useAuth();
 
   return (

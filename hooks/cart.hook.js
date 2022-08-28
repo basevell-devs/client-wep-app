@@ -1,5 +1,8 @@
 import { db, auth } from "../config/firebase";
 import { useState, useEffect } from "react";
+import { onSnapshot } from "@firebase/firestore";
+
+import { onAuthStateChanged } from "firebase/auth";
 
 export const useCart = (id) => {
   const [data, setData] = useState([]);
@@ -7,17 +10,27 @@ export const useCart = (id) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    async function fetchFromFirestore() {
-      auth.currentUser &&
-        db
-          .collection("Users")
-          .doc(auth.currentUser?.uid)
-          .onSnapshot(function (doc) {
-            setData(doc.data().cart);
-          });
-    }
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setData(user.cart);
 
-    fetchFromFirestore();
+        console.log(user);
+      } else {
+        setLoading(false);
+      }
+    });
+
+    // async function fetchFromFirestore() {
+    //   auth.currentUser &&
+    //     db
+    //       .collection("Users")
+    //       .doc(auth.currentUser?.uid)
+    //       .onSnapshot(function (doc) {
+    //         setData(doc.data().cart);
+    //       });
+    // }
+
+    // fetchFromFirestore();
   }, [auth.currentUser]);
 
   return {

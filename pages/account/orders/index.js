@@ -1,7 +1,7 @@
 import React from "react";
 
-import AccountSidebar from "../components/AccountSidebar";
-import Layout from "../components/Layout";
+import AccountSidebar from "../../../components/AccountSidebar";
+import Layout from "../../../components/Layout";
 
 import styles from "./orders.module.scss";
 import { useAuth } from "../../../firebase/context";
