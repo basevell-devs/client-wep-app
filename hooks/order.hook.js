@@ -14,44 +14,26 @@ const useOrders = () => {
     const fetchFromFirestore = async () => {
       const data = await getDocs(collectionData);
 
-      const orderArr = data.docs[0]._document.data.value.mapValue.fields.orders;
+      console.log(data);
 
-      if (orderArr) {
+      const orders = data.docs[0]._document.data.value.mapValue.fields.orders;
+
+      if (orders) {
         const orderData = await getDocs(collectionOrders, "Orders");
 
-        setData(orderData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        const ordersArray = orderData.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+          date: doc.data().date.toDate(),
+        }));
 
-        console.log(orderData.docs.map((doc) => ({ ...doc.data(), id: doc.id, date: doc.data().date.toDate() })));
+        setData(ordersArray);
+
+        setLoading(false);
+      } else {
+        setError("Something went wrong...");
       }
     };
-    // async function fetchFromFirestore() {
-    //   auth.currentUser &&
-    //     db
-    //       .collection("Users")
-    //       .doc(auth.currentUser.uid)
-    //       .get()
-    //       .then(function (doc) {
-    //         const orders = doc.data().orders;
-    //         console.log(orders);
-    //         if (orders) {
-    //           db.collection("Orders")
-    //             .get()
-    //             .then(function (querySnapshot) {
-    //               const ordersArray = querySnapshot.docs
-    //                 .filter((doc) => orders.includes(doc.id))
-    //                 .map(function (doc) {
-    //                   return {
-    //                     id: doc.id,
-    //                     ...doc.data(),
-    //                     date: doc.data().date.toDate(),
-    //                   };
-    //                 });
-    //               setData(ordersArray);
-    //               setLoading(false);
-    //             });
-    //         }
-    //       });
-    // }
 
     fetchFromFirestore();
   }, [auth.currentUser]);

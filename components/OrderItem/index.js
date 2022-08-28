@@ -1,5 +1,5 @@
 import React from "react";
-// import { format } from "date-fns";
+import { format } from "date-fns";
 
 import styles from "./order.module.scss";
 import { useAddress } from "hooks/address.hook";
@@ -12,7 +12,7 @@ const OrderItem = ({ data }) => {
       <div className={styles.header}>
         <div>
           <h4>Order date</h4>
-          {/* <span>{format(data.date, "MM.dd.yyyy - HH:mm")}</span> */}
+          <span>{format(data.date, "MM.dd.yyyy - HH:mm")}</span>
         </div>
         <div>
           <h4>Order Summary</h4>

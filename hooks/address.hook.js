@@ -1,35 +1,36 @@
 import { useEffect, useState } from "react";
 import { auth, db } from "../config/firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 const useAddresses = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const collectionData = collection(db, "Users");
+  const collectionAddress = collection(db, "Addresses");
+
   useEffect(() => {
-    async function fetchFromFirestore() {
-      auth.currentUser &&
-        db
-          .collection("Users")
-          .doc(auth.currentUser.uid)
-          .get()
-          .then(function (doc) {
-            const addresses = doc.data().addresses;
-            if (addresses) {
-              db.collection("Addresses")
-                .get()
-                .then(function (querySnapshot) {
-                  const addressArray = querySnapshot.docs
-                    .filter((doc) => addresses.includes(doc.id))
-                    .map(function (doc) {
-                      return { id: doc.id, ...doc.data() };
-                    });
-                  setData(addressArray);
-                  setLoading(false);
-                });
-            }
-          });
-    }
+    const fetchFromFirestore = async () => {
+      const data = await getDocs(collectionData);
+
+      const address = data.docs[0]._document.data.value.mapValue.fields.addresses;
+
+      if (address) {
+        const addressData = await getDocs(collectionAddress, "Addresses");
+
+        const addressesArr = addressData.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+
+        setData(addressesArr);
+
+        setLoading(false);
+      } else {
+        setError("Something went wrong...");
+      }
+    };
 
     fetchFromFirestore();
   }, [auth.currentUser]);
@@ -46,19 +47,30 @@ const useAddress = (id) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const collectionData = collection(db, "Users");
+  const collectionAddress = collection(db, "Addresses");
+
   useEffect(() => {
-    async function fetchFromFirestore() {
-      auth.currentUser &&
-        db
-          .collection("Addresses")
-          .doc(id)
-          .get()
-          .then(function (doc) {
-            setData(doc.data());
-            setLoading(false);
-          })
-          .catch((e) => setError(e));
-    }
+    const fetchFromFirestore = async () => {
+      const data = await getDocs(collectionData);
+
+      const address = data.docs[0]._document.data.value.mapValue.fields.addresses;
+
+      if (address) {
+        const addressData = await getDocs(collectionAddress, "Addresses");
+
+        const addressesArr = addressData.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+
+        setData(addressesArr);
+
+        setLoading(false);
+      } else {
+        setError("Something went wrong...");
+      }
+    };
 
     fetchFromFirestore();
   }, [auth.currentUser]);
