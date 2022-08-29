@@ -33,7 +33,7 @@ const useAddresses = () => {
     };
 
     fetchFromFirestore();
-  }, [auth.currentUser]);
+  }, [collectionAddress, collectionData]);
 
   return {
     data,

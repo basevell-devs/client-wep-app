@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 import styles from "./horizontal.module.scss";
@@ -9,7 +10,7 @@ const HorizontalCard = ({ bgColor, title, desc, image, ...props }) => {
         <div className={styles.textContainer} style={{ padding: 0, marginRight: 0 }}>
           <h3 style={{ marginBottom: 0, fontSize: 32 }}>{title}</h3>
         </div>
-        <img className={styles.bgImage} src={image} />
+        <Image className={styles.bgImage} src={image} alt="" layout="fill" />
       </div>
     );
   }
@@ -22,7 +23,7 @@ const HorizontalCard = ({ bgColor, title, desc, image, ...props }) => {
       </div>
       {image && (
         <div className={styles.imageContainer}>
-          <img className={styles.image} src={image} />
+          <Image className={styles.image} src={image} alt="" layout="fill" />
         </div>
       )}
     </div>

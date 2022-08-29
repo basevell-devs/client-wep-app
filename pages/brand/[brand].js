@@ -24,7 +24,7 @@ const BrandPage = ({ data, query }) => {
         <main className={styles.main}>
           <div className={styles.header}>
             <h1 className={styles.title}>
-              Listing {data.length} products for "{query.brand}"
+              Listing {data.length} products for {query.brand}
             </h1>
             <div className={styles.headerButtons}>
               <Button type="sort" style={{ marginRight: 20 }} />

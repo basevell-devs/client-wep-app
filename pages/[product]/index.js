@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
@@ -19,10 +18,6 @@ import ErrorPage from "../404";
 import Image from "next/image";
 
 const Product = ({ data, query }) => {
-  if (!data.product_name) {
-    return <ErrorPage />;
-  }
-
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedPhoto, setSelectedPhoto] = useState(0);
   const [isFavorite, setFavorite] = useState(false);
@@ -31,13 +26,19 @@ const Product = ({ data, query }) => {
 
   const router = useRouter();
 
-  const { brand, cover_photo, information, photos, price, product_name, sale_price, sizes } = data;
-
-  const id = query?.product;
-
   useEffect(() => {
     user && setFavorite(user.favorites.includes(id));
   }, [id, user]);
+
+  const cart = useCart().data;
+
+  if (!data.product_name) {
+    return <ErrorPage />;
+  }
+
+  const { brand, cover_photo, information, photos, price, product_name, sale_price, sizes } = data;
+
+  const id = query?.product;
 
   const removeEvent = (id) => {
     removeFavorite(id);
@@ -51,8 +52,6 @@ const Product = ({ data, query }) => {
   const favoriteEvent = () => {
     user ? (isFavorite ? removeEvent(id) : addEvent(id)) : typeof window !== "undefined" && router.push("/login");
   };
-
-  const cart = useCart().data;
 
   // console.log(cart);
 
@@ -87,8 +86,9 @@ const Product = ({ data, query }) => {
         <main className={styles.main}>
           <div className={styles.photosContainer}>
             <div className={styles.carouselContainer}>
-              <Image src={photos[selectedPhoto]} loading="lazy" alt="" />
+              <Image src={photos[selectedPhoto]} loading="lazy" alt="" layout="fill" />
             </div>
+
             <div className={styles.smallPhotos}>
               {photos.slice(0, 5).map((image, index) => {
                 return (
@@ -100,6 +100,7 @@ const Product = ({ data, query }) => {
                     onClick={() => setSelectedPhoto(index)}
                     loading="lazy"
                     alt=""
+                    layout="fill"
                   />
                 );
               })}

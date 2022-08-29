@@ -43,6 +43,10 @@ const AccountPage = () => {
   const [photo, setPhoto] = useState(null);
   const { user, loading } = useAuth();
 
+  const { push } = useRouter();
+
+  if (!user && !loading) push("/login");
+
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(schema),
   });
@@ -79,7 +83,6 @@ const AccountPage = () => {
       .catch((e) => setError(e.message));
   };
 
-  if (!user && !loading) useRouter().push("/login");
   return (
     <Layout noCategories>
       <AccountSidebar />

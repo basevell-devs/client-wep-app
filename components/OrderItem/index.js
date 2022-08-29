@@ -3,6 +3,7 @@ import { format } from "date-fns";
 
 import styles from "./order.module.scss";
 import { useAddress } from "hooks/address.hook";
+import Image from "next/image";
 
 const OrderItem = ({ data }) => {
   const address = useAddress(data.address);
@@ -29,15 +30,19 @@ const OrderItem = ({ data }) => {
       </div>
       <hr />
       <div className={styles.productPhotos}>
-        <img
+        <Image
           className={styles.photo}
           src="https://productimages.hepsiburada.net/s/34/120/10426321043506.jpg"
           loading="lazy"
+          alt=""
+          layout="fill"
         />
-        <img
+        <Image
           className={styles.photo}
           src="https://i.ibb.co/ZK2L8cg/kisspng-fashion-model-hugo-boss-pinpoint-resource-of-oklah-mens-fashion-5a78e637c1bde9-3434957015178.png"
           loading="lazy"
+          alt=""
+          layout="fill"
         />
       </div>
       <hr />

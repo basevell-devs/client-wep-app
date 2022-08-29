@@ -7,6 +7,7 @@ import HeartFilled from "../icons/heart-filled";
 import { addFavorite, removeFavorite } from "../../firebase/product";
 import { useRouter } from "next/router";
 import { useAuth } from "../../firebase/context";
+import Image from "next/image";
 
 const ProductCard = ({ bgColor, id, brand, name, price, sale_price, image, favorite, ...props }) => {
   const [isFavorite, setFavorite] = useState(favorite);
@@ -47,7 +48,7 @@ const ProductCard = ({ bgColor, id, brand, name, price, sale_price, image, favor
         {isFavorite ? <HeartFilled width={16} height={16} /> : <HeartIcon width={16} height={16} />}
       </button>
       <div className={styles.imageContainer}>
-        {image && <img className={styles.image} src={image} loading="lazy" />}
+        {image && <Image className={styles.image} src={image} loading="lazy" alt="" layout="fill" />}
       </div>
       <div className={styles.textContainer}>
         <Link href={`/brand/${brand}`}>

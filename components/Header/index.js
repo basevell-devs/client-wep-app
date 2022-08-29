@@ -13,6 +13,7 @@ import { useCart } from "../../hooks/cart.hook";
 
 import { useRouter } from "next/router";
 import MenuIcon from "../icons/menu";
+import Image from "next/image";
 
 const Header = () => {
   const [showHeader, setShowHeader] = useState({
@@ -94,11 +95,7 @@ const Header = () => {
 
         <Link href="/account">
           <div className={styles.profileContainer}>
-            <img
-              src={user?.photoUrl || "https://picsum.photos/200/200"}
-              className={styles.profilePhoto}
-              loading="lazy"
-            />
+            <Image src={user?.photoUrl || ""} className={styles.profilePhoto} loading="lazy" alt="" layout="fill" />
             <span>
               Hello <span style={{ fontWeight: "normal" }}>{user?.name || "Guest"}</span>
             </span>

@@ -2,6 +2,7 @@ import React from "react";
 
 import styles from "./vertical.module.scss";
 import Link from "next/link";
+import Image from "next/image";
 
 const VerticalCard = ({ bgColor, brand, name, price, sale_price, image, border, href, ...props }) => {
   return (
@@ -17,7 +18,7 @@ const VerticalCard = ({ bgColor, brand, name, price, sale_price, image, border, 
           <button className={styles.favContainer}>{(((price - sale_price) / price) * 100) | 0}%</button>
         )}
         <div className={styles.imageContainer}>
-          {image && <img className={styles.image} src={image} loading="lazy" />}
+          {image && <Image className={styles.image} src={image} loading="lazy" alt="" layout="fill" />}
         </div>
         <div className={styles.textContainer}>
           <h4 className={styles.brandText}>{brand}</h4>

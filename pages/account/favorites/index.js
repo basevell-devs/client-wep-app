@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useEffect } from "react";
 
 import AccountSidebar from "../../../components/AccountSidebar";
@@ -15,6 +14,10 @@ import { useRouter } from "next/router";
 const Favorites = () => {
   const [products, setProducts] = useState();
   const [loading, setLoading] = useState(true);
+
+  const { push } = useRouter();
+
+  if (!user && !userLoading) push("/login");
 
   const collectionProducts = collection(db, "Products");
 
@@ -43,8 +46,6 @@ const Favorites = () => {
 
     fetchFromFirestore();
   }, [collectionProducts, user]);
-
-  if (!user && !userLoading) useRouter().push("/login");
 
   return (
     <Layout noCategories>
