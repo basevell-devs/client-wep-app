@@ -1,0 +1,25 @@
+{
+  "extends": ["next", "react-hooks", "next/core-web-vitals", "eslint:recommended"],
+  "rules": {
+    "semi": ["off", "always"],
+    "quotes": ["off", "double"],
+    "react-hooks": "off",
+    "react-hooks/exhaustive-deps": "off", // Checks effect dependencies
+    "no-unused-vars": "off", //Disallows unused variables
+    "react/jsx-key": "off", //missing key prop
+    "react/no-unescaped-entities": "off", //This rule prevents characters that you may have meant as JSX escape characters from being accidentally injected as a text node in JSX statements.
+    "@next/next/no-img-element": "off", //An HTML <img> element was used to display an image. For better performance and automatic Image Optimization, use Next.js' built-in image component instead.
+    "no-empty-pattern": "off", //Disallows empty destructuring patterns.
+    "no-useless-escape": "off", //Disallows unnecessary escape characters.
+    "no-undef": "off", //Disallows the use of undeclared variables unless mentioned in /*global */ comments
+    "import/no-anonymous-default-export": "off", //Reports if a module's default export is unnamed.
+    "no-redeclare": "off", //Disallows variable redeclarations.
+    "no-self-assign": "off", //Disallows assignments where both sides are exactly the same.
+    "no-case-declarations": "off", //Disallows lexical declarations in case/default clauses.
+    "react/jsx-no-target-blank": "off", // Using target="_blank" without rel="noreferrer" (which implies rel="noopener") is a security risk in older
+    "no-empty": "off", //cannot add empty curly brackets
+    "react/jsx-no-duplicate-props": "off",
+    "@next/next/no-html-link-for-pages": "off",
+    "no-mixed-spaces-and-tabs": "off"
+  }
+}
