@@ -34,7 +34,7 @@ const useOrders = () => {
     };
 
     fetchFromFirestore();
-  }, [auth.currentUser]);
+  }, [collectionData, collectionOrders]);
 
   return {
     data,

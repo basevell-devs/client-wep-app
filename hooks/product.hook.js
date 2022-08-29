@@ -32,7 +32,7 @@ export const useProduct = (id) => {
     };
 
     fetchFromFirestore();
-  }, [id]);
+  }, [collectionData, collectionProducts, id]);
 
   return {
     data,

@@ -41,7 +41,7 @@ export const useCart = (id) => {
     reqData();
 
     // return () => unsub();
-  }, [auth.currentUser]);
+  }, [collectionCart, collectionData]);
 
   return {
     data,
@@ -70,7 +70,7 @@ export const useCartOnce = (id) => {
         .catch((e) => setError(e));
     }
     auth.currentUser?.uid && fetchFromFirestore();
-  }, [auth.currentUser]);
+  }, []);
 
   return {
     data,

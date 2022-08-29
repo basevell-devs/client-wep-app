@@ -73,7 +73,7 @@ const useAddress = (id) => {
     };
 
     fetchFromFirestore();
-  }, [auth.currentUser]);
+  }, [collectionAddress, collectionData]);
 
   return {
     data,

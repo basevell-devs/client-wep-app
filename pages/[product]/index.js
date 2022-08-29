@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
@@ -15,13 +16,14 @@ import Button from "../../components/Button";
 import HeartIcon from "../../components/icons/heart";
 import HeartFilled from "../../components/icons/heart-filled";
 import ErrorPage from "../404";
+import Image from "next/image";
 
 const Product = ({ data, query }) => {
   if (!data.product_name) {
     return <ErrorPage />;
   }
 
-  const [selectedSize, setSelectedSize] = useState();
+  const [selectedSize, setSelectedSize] = useState(null);
   const [selectedPhoto, setSelectedPhoto] = useState(0);
   const [isFavorite, setFavorite] = useState(false);
 
@@ -35,7 +37,7 @@ const Product = ({ data, query }) => {
 
   useEffect(() => {
     user && setFavorite(user.favorites.includes(id));
-  }, [user]);
+  }, [id, user]);
 
   const removeEvent = (id) => {
     removeFavorite(id);
@@ -85,18 +87,19 @@ const Product = ({ data, query }) => {
         <main className={styles.main}>
           <div className={styles.photosContainer}>
             <div className={styles.carouselContainer}>
-              <img src={photos[selectedPhoto]} loading="lazy" />
+              <Image src={photos[selectedPhoto]} loading="lazy" alt="" />
             </div>
             <div className={styles.smallPhotos}>
               {photos.slice(0, 5).map((image, index) => {
                 return (
-                  <img
+                  <Image
                     key={index}
                     src={image}
                     className={styles.smallPhoto}
                     style={{ borderColor: selectedPhoto === index && "black" }}
                     onClick={() => setSelectedPhoto(index)}
                     loading="lazy"
+                    alt=""
                   />
                 );
               })}

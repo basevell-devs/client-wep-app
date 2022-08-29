@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, useEffect } from "react";
 
 import AccountSidebar from "../../../components/AccountSidebar";
@@ -41,7 +42,7 @@ const Favorites = () => {
     };
 
     fetchFromFirestore();
-  }, [user]);
+  }, [collectionProducts, user]);
 
   if (!user && !userLoading) useRouter().push("/login");
 
