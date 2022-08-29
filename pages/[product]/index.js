@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import Link from "next/link";
 
 import { db } from "../../config/firebase";
 import { useAuth } from "../../firebase/context";
-import { useCart } from "hooks/cart.hook";
+import { useCart } from "../../hooks/cart.hook";
 import { removeFavorite, addFavorite, addToCart } from "../../firebase/product";
 
 import styles from "./product.module.scss";
@@ -12,9 +13,8 @@ import styles from "./product.module.scss";
 import Layout from "../../components/Layout";
 import Button from "../../components/Button";
 import HeartIcon from "../../components/icons/heart";
-import HeartFilled from "../icons/heart-filled";
-import ErrorPage from "pages/404";
-import { useRouter } from "next/router";
+import HeartFilled from "../../components/icons/heart-filled";
+import ErrorPage from "../404";
 
 const Product = ({ data, query }) => {
   if (!data.product_name) {
