@@ -6,14 +6,9 @@ import HorizontalCard from "../components/HomeCard/horizontal-card";
 import VerticalCard from "../components/HomeCard/vertical-card";
 import Products from "../components/HomeProducts";
 
-import { db } from "../config/firebase";
 import Layout from "../components/Layout";
 
-import { useAuth } from "../firebase/context";
-
 const Home = () => {
-  const auth = useAuth();
-
   return (
     <Layout>
       <div className={styles.container}>
@@ -49,14 +44,14 @@ const Home = () => {
               bgColor="#f6f6f6"
               name="Hugo Boss Leather Jacket"
               image="https://i.ibb.co/ZK2L8cg/kisspng-fashion-model-hugo-boss-pinpoint-resource-of-oklah-mens-fashion-5a78e637c1bde9-3434957015178.png"
-              price="300"
-              sale_price="200"
+              price="1000"
+              sale_price="800"
             />
             <VerticalCard
               bgColor="#f6f6f6"
               name="Polka-dotted slip dress"
               image="https://i.ibb.co/xmJdGXD/kisspng-slip-dress-clothing-casual-fashion-model-5abb4a319d2986-8864671115222236656438.png"
-              price="200"
+              price="2000"
             />
           </Products>
           <Products reverse>
@@ -76,14 +71,14 @@ const Home = () => {
               bgColor="#f6f6f6"
               name="CoolBrand Blouse"
               image="https://i.ibb.co/0hxvyPk/kisspng-odeya-rush-america-s-next-top-model-fashion-model-5ad7cae3ccf9c9-1015400915240916198396.png"
-              price="100"
+              price="1200"
             />
             <VerticalCard
               bgColor="#f6f6f6"
               name="NiceJeans Denim Shirt"
               image="https://i.ibb.co/dbqFKZT/kisspng-mikkel-gregers-jensen-denim-jeans-model-fashion-5b1e77ea4106c4-7687355115287234342664.png"
-              price="150"
-              sale_price="140"
+              price="1500"
+              sale_price="1000"
             />
           </Products>
           <Products>
@@ -103,15 +98,15 @@ const Home = () => {
               bgColor="#f6f6f6"
               name="RandomBrand White Dress"
               image="https://i.ibb.co/yQqKVkR/kisspng-wedding-dress-bridesmaid-dress-5b17cb45c471f3-3928155515282860218047.png"
-              price="150"
-              sale_price="120"
+              price="1900"
+              sale_price="1200"
             />
 
             <VerticalCard
               bgColor="#f6f6f6"
               name="ClothWorld Hooded Yellow Jacket"
               image="https://i.ibb.co/dtDfmFL/Kisspng-megan-fox-april-o-neil-teenage-mutant-ninja-turtle-april-5ac7c931c3d7f9-94147347152304260980.png"
-              price="150"
+              price="1200"
             />
           </Products>
         </main>

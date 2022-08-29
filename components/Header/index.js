@@ -25,7 +25,7 @@ const Header = () => {
   const { user } = useAuth();
 
   const cart = useCart().data;
-  // const cartLength = Object.keys(cart).reduce((a, b) => a + cart[b].length, 0);
+  // const cartLength = cart.length;
 
   return (
     <nav className={styles.container}>
@@ -37,7 +37,9 @@ const Header = () => {
           <Link href="/cart">
             <div className={styles.cartContainer}>
               <CartIcon width={28} height={28} className={styles.cartIcon} />
-              <div>{/* <span>{cartLength || 0}</span> */}</div>
+              <div>
+                <span>{cart.length || 0}</span>
+              </div>
             </div>
           </Link>
           <div className={styles.profileContainer}>
@@ -86,7 +88,7 @@ const Header = () => {
         <Link href="/cart">
           <div className={styles.cartContainer}>
             <CartIcon width={20} height={20} className={styles.cartIcon} />
-            {/* <span>Cart: {cartLength || 0}</span> */}
+            <span>Cart: {cart.length || 0}</span>
           </div>
         </Link>
 

@@ -1,7 +1,6 @@
 import React from "react";
 
 import styles from "./vertical.module.scss";
-import HeartIcon from "../icons/heart";
 import Link from "next/link";
 
 const VerticalCard = ({ bgColor, brand, name, price, sale_price, image, border, href, ...props }) => {
@@ -26,12 +25,12 @@ const VerticalCard = ({ bgColor, brand, name, price, sale_price, image, border, 
           {sale_price ? (
             <div className={styles.priceContainer}>
               <div className={styles.prices}>
-                <span className={styles.priceText}>{price}$</span>
-                <span className={styles.salePriceText}>{sale_price}$</span>
+                <span className={styles.priceText}>{price}&#8358;</span>
+                <span className={styles.salePriceText}>{sale_price}&#8358;</span>
               </div>
             </div>
           ) : (
-            <span className={styles.salePriceText}>{price || 0}$</span>
+            <span className={styles.salePriceText}>{price || 0}&#8358;</span>
           )}
         </div>
       </div>

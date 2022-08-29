@@ -1,25 +1,46 @@
-import { db, auth } from "../config/firebase";
 import { useState, useEffect } from "react";
-import { onSnapshot } from "@firebase/firestore";
-
-import { onAuthStateChanged } from "firebase/auth";
+import { db, auth } from "../config/firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 export const useCart = (id) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setData(user.cart);
+  const collectionData = collection(db, "Users");
+  const collectionCart = collection(db, "Products");
 
-        // console.log(user);
+  useEffect(() => {
+    const reqData = async () => {
+      const data = await getDocs(collectionData);
+      const cart = data.docs[0]._document.data.value.mapValue.fields.cart;
+
+      if (cart) {
+        const addressData = await getDocs(collectionCart, "Products");
+
+        const cartArr = addressData.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+
+        setData(cartArr);
+        setLoading(false);
       } else {
         setError("Something went wrong...");
-        setLoading(false);
       }
-    });
+    };
+
+    // const unsub = onAuthStateChanged(auth, (user) => {
+    //   if (user) {
+    //   } else {
+    //     setError("Something went wrong...");
+    //     setLoading(false);
+    //   }
+    // });
+
+    reqData();
+
+    // return () => unsub();
   }, [auth.currentUser]);
 
   return {
