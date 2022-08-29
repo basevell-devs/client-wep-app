@@ -18,7 +18,9 @@ const Addresses = () => {
 
   const { data, loading } = useAddresses();
 
-  if (!user && !userLoading) useRouter().push("/login");
+  const { push } = useRouter();
+
+  if (!user && !userLoading) push("/login");
 
   return (
     <Layout noCategories>
@@ -41,7 +43,7 @@ const Addresses = () => {
                 <p>+</p>Add New Address
               </button>
               {data?.map((item) => {
-                return <AddressCard data={item} />;
+                return <AddressCard data={item} key={item.id} />;
               })}
             </div>
           )}

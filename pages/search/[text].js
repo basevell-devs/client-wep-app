@@ -26,7 +26,7 @@ const SearchPage = ({ data, query }) => {
         <main className={styles.main}>
           <div className={styles.header}>
             <h1 className={styles.title}>
-              Listing {data.length} products for "{query.text}"
+              Listing {data.length} products for {query.text}
             </h1>
             <div className={styles.headerButtons}>
               <Button type="sort" style={{ marginRight: 20 }} />

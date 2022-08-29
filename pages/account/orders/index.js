@@ -14,7 +14,9 @@ const Orders = () => {
 
   const { data } = useOrders();
 
-  if (!user && !loading) useRouter().push("/login");
+  const { push } = useRouter();
+
+  if (!user && !loading) push("/login");
 
   return (
     <Layout noCategories>
@@ -27,7 +29,7 @@ const Orders = () => {
           ) : (
             <div className={styles.orders}>
               {data?.map((item) => {
-                return <OrderItem data={item} />;
+                return <OrderItem data={item} key={item.id} />;
               })}
             </div>
           )}

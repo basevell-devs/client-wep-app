@@ -30,17 +30,7 @@ export const useCart = (id) => {
       }
     };
 
-    // const unsub = onAuthStateChanged(auth, (user) => {
-    //   if (user) {
-    //   } else {
-    //     setError("Something went wrong...");
-    //     setLoading(false);
-    //   }
-    // });
-
     reqData();
-
-    // return () => unsub();
   }, [collectionCart, collectionData]);
 
   return {

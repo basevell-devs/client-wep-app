@@ -13,20 +13,6 @@ const CartPage = () => {
   const { user, loading } = useAuth();
   const { data } = useCart();
 
-  // const sizeCount = data.reduce(
-  //   (acc, value) => ({
-  //     ...acc,
-  //     [value.name + "__size__" + value.size]: (acc[value.name + "__size__" + value.size] || 0) + 1,
-  //   }),
-  //   {},
-  // );
-
-  // const cartItemsArray = [
-  //   ...new Set(cartItems.filter((v, i, a) => a.findIndex((t) => t.name === v.name && t.size === v.size) === i)),
-  // ].map((item) => {
-  //   return { ...item, count: sizeCount[item.name + "__size__" + item.size] };
-  // });
-
   const addCartEvent = (id, size) => {
     const newCart = size
       ? {
