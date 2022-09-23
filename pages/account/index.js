@@ -7,7 +7,7 @@ import { useAuth } from "../../firebase/context";
 import styles from "./account.module.scss";
 import AccountSidebar from "../../components/AccountSidebar";
 import Layout from "../../components/Layout";
-import Input from "../../components/Input";
+import Input from "../../components/TextInput";
 import Button from "../../components/Button";
 
 import { updateUser, updatePassword } from "../../firebase/update-user";

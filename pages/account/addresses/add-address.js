@@ -5,7 +5,7 @@ import * as yup from "yup";
 
 import styles from "./add.module.scss";
 
-import Input from "../../../components/Input";
+import Input from "../../../components/TextInput";
 import Button from "../../../components/Button";
 
 import { addAddress } from "../../../firebase/addresses";

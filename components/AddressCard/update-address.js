@@ -5,7 +5,7 @@ import * as yup from "yup";
 
 import styles from "./update.module.scss";
 
-import Input from "../../components/Input";
+import Input from "../TextInput";
 import Button from "../../components/Button";
 
 import { updateAddress } from "../../firebase/addresses";

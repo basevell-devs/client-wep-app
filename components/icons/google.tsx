@@ -1,6 +1,6 @@
 import React from "react";
 
-const GoogleIcon = (props) => {
+const GoogleIcon = ({ ...props }) => {
   return (
     <svg width={24} height={25} viewBox="0 0 24 25" {...props}>
       <g fill="none">

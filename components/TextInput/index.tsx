@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 import styles from "./input.module.scss";
 
-const Input = ({ register, required = true, error, noMargin, ...props }) => {
-  const [focus, setFocus] = useState(false);
+const TextInput = ({ register, required = true, error, noMargin, ...props }) => {
+  const [focus, setFocus] = useState<boolean | any>(false);
   return (
     <input
       className={styles.container}
@@ -20,4 +20,4 @@ const Input = ({ register, required = true, error, noMargin, ...props }) => {
   );
 };
 
-export default Input;
+export default TextInput;

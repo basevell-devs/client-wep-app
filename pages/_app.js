@@ -1,12 +1,18 @@
 import "../styles/globals.css";
 
 import { AuthProvider } from "../firebase/context";
+import { CssBaseline } from "@mui/material";
+import { ThemeProvider } from "@emotion/react";
+import { theme } from "../themes/theme";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <AuthProvider>
-      <Component {...pageProps} />
-    </AuthProvider>
+    <ThemeProvider theme={theme}>
+      <AuthProvider>
+        <CssBaseline />
+        <Component {...pageProps} />
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 
