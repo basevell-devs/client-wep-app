@@ -45,7 +45,7 @@ const AccountPage = () => {
 
   const { push } = useRouter();
 
-  if (!user && !loading) push("/login");
+  if (!user && !loading) push("/auth");
 
   const { register, handleSubmit, watch, errors } = useForm({
     resolver: yupResolver(schema),

@@ -27,7 +27,7 @@ const ProductCard = ({ bgColor, id, brand, name, price, sale_price, image, favor
 
   const favoriteEvent = () => {
     if (user && !loading) isFavorite ? removeEvent(id) : addEvent(id);
-    else typeof window !== "undefined" && router.push("/login");
+    else typeof window !== "undefined" && router.push("/auth");
   };
 
   const goToProduct = (target) => {

@@ -17,7 +17,7 @@ const Favorites = () => {
 
   const { push } = useRouter();
 
-  if (!user && !userLoading) push("/login");
+  if (!user && !userLoading) push("/auth");
 
   const collectionProducts = collection(db, "Products");
 

@@ -64,8 +64,8 @@ const Header = () => {
             </>
           ) : (
             <>
-              <Link href="/login">Login</Link>
-              <Link href="/login">Register</Link>
+              <Link href="/auth">Login</Link>
+              <Link href="/auth">Register</Link>
             </>
           )}
         </div>
@@ -112,8 +112,8 @@ const Header = () => {
                   </>
                 ) : (
                   <>
-                    <Link href="/login">Login</Link>
-                    <Link href="/login">Register</Link>
+                    <Link href="/auth">Login</Link>
+                    <Link href="/auth">Register</Link>
                   </>
                 )}
               </div>

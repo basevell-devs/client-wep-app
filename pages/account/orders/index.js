@@ -16,7 +16,7 @@ const Orders = () => {
 
   const { push } = useRouter();
 
-  if (!user && !loading) push("/login");
+  if (!user && !loading) push("/auth");
 
   return (
     <Layout noCategories>

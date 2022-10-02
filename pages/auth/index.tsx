@@ -12,13 +12,6 @@ const LoginPage = () => {
 
   const router = useRouter();
 
-  // auth.onAuthStateChanged(function (user) {
-  //   if (user) {
-  //     // console.log(user);
-  //     typeof window !== "undefined" && router.push("/");
-  //   }
-  // });
-
   useEffect(() => {
     getRedirectResult(auth)
       .then((result) => {

@@ -29,7 +29,7 @@ const CartPage = () => {
 
   const router = useRouter();
 
-  if (!loading && !user && typeof window !== "undefined") router.push("/login");
+  if (!loading && !user && typeof window !== "undefined") router.push("/auth");
 
   return (
     <Layout>

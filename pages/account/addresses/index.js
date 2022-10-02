@@ -20,7 +20,7 @@ const Addresses = () => {
 
   const { push } = useRouter();
 
-  if (!user && !userLoading) push("/login");
+  if (!user && !userLoading) push("/auth");
 
   return (
     <Layout noCategories>

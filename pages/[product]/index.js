@@ -50,13 +50,13 @@ const Product = ({ data, query }) => {
   };
 
   const favoriteEvent = () => {
-    user ? (isFavorite ? removeEvent(id) : addEvent(id)) : typeof window !== "undefined" && router.push("/login");
+    user ? (isFavorite ? removeEvent(id) : addEvent(id)) : typeof window !== "undefined" && router.push("/auth");
   };
 
   // console.log(cart);
 
   const addCartEvent = () => {
-    if (!user && !loading && typeof window !== "undefined") router.push("/login");
+    if (!user && !loading && typeof window !== "undefined") router.push("/auth");
     else {
       if (selectedSize) {
         const newCart = {
